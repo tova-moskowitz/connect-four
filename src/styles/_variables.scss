@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Space Grotesk";
+    src: local("Space_Grotesk"),
+        url("../public/assets/fonts/SpaceGrotesk-VariableFont_wght.ttf") format("truetype");
+}
+
+// Fonts
+$font: "Space Grotesk",
+sans-serif;
+
+// Typography
+
+@mixin headingL {
+    font-size: 56px;
+    line-height: 71px;
+}
+
+@mixin headingM {
+    font-size: 24;
+    line-height: 31px;
+}
+
+@mixin headingS {
+    font-size: 20;
+    line-height: 26px;
+}
+
+@mixin headingXS {
+    font-size: 16;
+    line-height: 21px;
+}
+
+@mixin bodyText {
+    font-size: 16px;
+    line-height: 21px;
+}
+
+
+@mixin body {
+    font-size: 14px;
+    line-height: 28px;
+}
+
+// Colors
+$black: #000000;
+$white: #FFFFFF;
+$purple: #7945FF;
+$dark-purple: #5C2DD5;
+$pink: #FD6687;
+$yellow: #FFCE67;
+
+
+$main-menu: $purple;

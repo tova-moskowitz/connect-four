@@ -1,0 +1,20 @@
+@import "./styles/_variables.scss";
+
+body {
+  font-family: $font;
+}
+
+h1 {
+  color: green;
+  font-family: $font;
+}
+
+.rules-heading {
+  @include headingL;
+  font-weight: 700;
+  color: $black;
+
+  .headingS {
+    color: $pink;
+  }
+}
