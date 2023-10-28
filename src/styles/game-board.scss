@@ -1,69 +1,123 @@
 @import "../styles/_variables.scss";
 
-
 .gameboard-wrapper {
-    width: 100%;
-    margin: auto;
+  width: 100%;
+  margin: auto;
 
-    .logo {
+  button {
+    border-radius: 20px;
+    background: $dark-purple;
+    color: $white;
+  }
+
+  .logo {
+    position: absolute;
+    top: 5%;
+    left: 48%;
+  }
+
+  .gameboard {
+
+    .player1-score,
+    .player2-score {
+      width: 141px;
+      height: 160px;
+      flex-shrink: 0;
+      border-radius: 20px;
+      border: 3px solid $black;
+      background: $white;
+      box-shadow: 0px 10px 0px 0px $black;
+    }
+
+    .current-turn-section-wrapper {
+      position: absolute;
+
+      .current-turn-background {
+        position: relative;
+        width: 191px;
+        height: 150px;
+        flex-shrink: 0;
+        fill: var(--Red, #fd6687);
+        stroke-width: 3px;
+        stroke: var(--Black, #000);
+        filter: drop-shadow(0px 10px 0px #000);
+      }
+
+      .current-turn-countdown {
+        top: 3em;
         position: absolute;
-        top: 5%;
-        left: 48%;
+        left: 20%;
+      }
+
+      .red {
+        color: $white;
+      }
+
+      .yellow {
+        color: $black;
+      }
     }
+  }
+}
 
-    .gameboard {
+// menu modal
+.menu-modal {
+  position: absolute;
+  z-index: 1;
+  color: $white;
+  top: 55%;
+  left: 50%;
+  width: 480px;
+  height: 491px;
+  flex-shrink: 0;
+  margin-top: -300px;
+  margin-left: -300px;
+  border-radius: 40px;
+  border: 3px solid $black;
+  background: $purple;
+  box-shadow: 0px 10px 0px 0px $black;
 
-        .layer-white,
-        .layer-black {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            height: 600px;
-            margin-top: -300px;
-            margin-left: -300px;
-        }
+  button {
+    border-radius: 20px;
+    border: 3px solid var(--Black, #000);
+    background: var(--White, #fff);
+    box-shadow: 0px 10px 0px 0px #000;
+    // color:
+  }
+}
 
-        .player1-score,
-        .player2-score {
-            width: 141px;
-            height: 160px;
-            flex-shrink: 0;
-            border-radius: 20px;
-            border: 3px solid var(--Black, #000);
-            background: var(--White, #FFF);
-            box-shadow: 0px 10px 0px 0px #000;
-        }
+//gameboard
+.gameboard::before {
+  content: "";
+  background: url("/assets/images/board-layer-black-large.svg") no-repeat;
+  position: absolute;
+  width: 39.5rem;
+  height: 37.5rem;
+  margin-left: 24rem;
+  margin-top: -6rem;
+}
 
-        .current-turn-section-wrapper {
-            position: absolute;
+.gameboard::after {
+  content: "";
+  background: url("/assets/images/board-layer-white-large.svg") no-repeat;
+  position: absolute;
+  width: 39.5rem;
+  height: 36.5rem;
+  margin-top: -27rem;
+  margin-left: 24rem;
+}
 
+.board {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  position: absolute;
+  left: 485px;
+  top: 200px;
 
-            .current-turn-background {
-                position: relative;
-                width: 191px;
-                height: 150px;
-                flex-shrink: 0;
-                fill: var(--Red, #FD6687);
-                stroke-width: 3px;
-                stroke: var(--Black, #000);
-                filter: drop-shadow(0px 10px 0px #000);
-
-            }
-
-            .current-turn-countdown {
-                top: 3em;
-                position: absolute;
-                left: 20%;
-            }
-
-            .red {
-                color: $white
-            }
-
-            .yellow {
-                color: $black
-            }
-        }
-    }
+  .piece {
+    border: 2px $pink solid;
+    width: 5.35rem;
+    height: 5.35rem;
+    background: $pink;
+  }
 }
