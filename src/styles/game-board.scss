@@ -93,8 +93,9 @@
   position: absolute;
   width: 39.5rem;
   height: 37.5rem;
-  margin-left: 24rem;
-  margin-top: -6rem;
+  left: 485px;
+  top: 200px;
+
 }
 
 .gameboard::after {
@@ -103,21 +104,27 @@
   position: absolute;
   width: 39.5rem;
   height: 36.5rem;
-  margin-top: -27rem;
-  margin-left: 24rem;
+  left: 485px;
+  top: 200px;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   position: absolute;
-  left: 485px;
-  top: 200px;
+  left: 500px;
+  top: 220px;
+  z-index: 1;
+  gap: 21px;
+  cursor: pointer;
 
   .piece {
-    border: 2px $pink solid;
-    width: 5.35rem;
-    height: 5.35rem;
-    background: $pink;
+    background: green;
+    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    border: 4px $pink solid;
+    cursor: pointer;
+    border-radius: 50px;
   }
 }
