@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/rules-modal.scss";
+import "../styles/main-menu.scss";
 import iconCheck from "../../public/assets/images/icon-check.svg";
 import iconCheckHover from "../../public/assets/images/icon-check-hover.svg";
 
