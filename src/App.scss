@@ -1,11 +1,15 @@
 @import "./styles/_variables.scss";
 
+.main-wrapper {
+  text-align: center;
+}
+
 body {
   font-family: $font;
+  background: $purple;
 }
 
 h1 {
-  color: green;
   font-family: $font;
 }
 
