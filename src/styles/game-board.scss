@@ -65,8 +65,7 @@
 // menu modal
 .menu-modal {
   position: absolute;
-  z-index: 1;
-  color: $white;
+  z-index: 99;
   top: 55%;
   left: 50%;
   width: 480px;
@@ -84,47 +83,50 @@
     border: 3px solid var(--Black, #000);
     background: var(--White, #fff);
     box-shadow: 0px 10px 0px 0px #000;
-    // color:
+    color: $black;
   }
 }
 
-//gameboard
-.gameboard::before {
+//  board
+.board::before {
+  top: -5px;
   content: "";
   background: url("/assets/images/board-layer-black-large.svg") no-repeat;
   position: absolute;
-  width: 39.5rem;
-  height: 37.5rem;
-  left: 485px;
-  top: 200px;
-
+  width: 200%;
+  height: 150%;
+  cursor: pointer;
+  z-index: -1;
 }
 
-.gameboard::after {
+.board::after {
+  top: -5px;
   content: "";
   background: url("/assets/images/board-layer-white-large.svg") no-repeat;
   position: absolute;
-  width: 39.5rem;
-  height: 36.5rem;
-  left: 485px;
-  top: 200px;
+  width: 200%;
+  height: 150%;
+  pointer-events: none;
 }
 
 .board {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  position: absolute;
-  left: 504px;
-  top: 226px;
+  position: relative;
+  left: 200px;
+  top: 0px;
   z-index: 1;
-  width: 41%;
-
+  width: 26rem;
+  height: 26rem;
+  row-gap: 8px;
 
   .piece {
-    margin-bottom: 28px;
-    width: 62px;
-    height: 60px;
+    color: white;
+    width: 83px;
+    height: 83px;
     cursor: pointer;
     border-radius: 50px;
+    margin-left: 6px;
+    margin-bottom: 8px;
   }
 }
