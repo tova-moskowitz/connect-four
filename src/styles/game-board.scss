@@ -51,10 +51,12 @@
 
       .red {
         color: $white;
+        background: $pink;
       }
 
       .yellow {
         color: $black;
+        background: $yellow;
       }
     }
   }
@@ -112,16 +114,15 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   position: absolute;
-  left: 507px;
-  top: 223px;
+  left: 504px;
+  top: 226px;
   z-index: 1;
-  gap: 28px;
-  cursor: pointer;
+  width: 41%;
+
 
   .piece {
-    background: $yellow;
     margin-bottom: 28px;
-    width: 60px;
+    width: 62px;
     height: 60px;
     cursor: pointer;
     border-radius: 50px;
