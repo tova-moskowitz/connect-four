@@ -5,32 +5,18 @@ import CurrentTurn from "./CurrentTurn.jsx";
 import MenuModal from "./MenuModal.jsx";
 import Board from "./Board.jsx";
 
-function GameBoard() {
+function GameBoard({
+  clickColumn,
+  currentTurnColor,
+  currentPlayer,
+  clickCell,
+  clickRestart,
+  playerOneScore,
+  playerTwoScore,
+  countdown,
+  piece,
+}) {
   const [modalOpen, setModalOpen] = useState(false);
-  const [playerOneScore, setPlayerOneScore] = useState(0);
-  const [playerTwoScore, setPlayerTwoScore] = useState(0);
-  const [currentPlayer, setCurrentPlayer] = useState(1);
-  const [currentTurnColor, setCurrentTurnColor] = useState("red");
-  const [countdown, setCountdown] = useState(30);
-  const [winner, setWinner] = useState("");
-
-  useEffect(() => {
-    if (countdown > 0) {
-      // setTimeout(() => setCountdown(countdown - 1), 1000);
-    } else {
-      setWinner(currentPlayer === 1 ? 2 : 1);
-      // setCountdown(`Player ${winner} WINS!`);
-    }
-  });
-
-  const clickRestart = () => {
-    setWinner("");
-    // setCountdown(30);
-    setCurrentTurnColor("red");
-    setCurrentPlayer(1);
-    setPlayerOneScore(0);
-    setPlayerTwoScore(0);
-  };
 
   const openMenuModal = (e) => {
     setModalOpen(true);
@@ -54,7 +40,13 @@ function GameBoard() {
         <div className="player1-score">
           <ScoreCard player="1" playerScore={playerOneScore} number="one" />
         </div>
-        <Board />
+        <Board
+          piece={piece}
+          clickColumn={clickColumn}
+          clickCell={clickCell}
+          currentPlayer={currentPlayer}
+          currentTurnColor={currentTurnColor}
+        />
         <div className="player2-score">
           <ScoreCard player="2" playerScore={playerTwoScore} number="two" />
         </div>
