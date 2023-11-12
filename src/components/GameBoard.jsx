@@ -6,7 +6,10 @@ import MenuModal from "./MenuModal.jsx";
 import Board from "./Board.jsx";
 
 function GameBoard({
-  clickColumn,
+  marker,
+  showColumnMarker,
+  // redPieces,
+  // yellowPiece,
   currentTurnColor,
   currentPlayer,
   clickCell,
@@ -14,16 +17,38 @@ function GameBoard({
   playerOneScore,
   playerTwoScore,
   countdown,
-  piece,
+  pieces,
+  columnToShow,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [piecePositions, setPiecePositions] = useState([]);
+  const empty = [];
 
   const openMenuModal = (e) => {
     setModalOpen(true);
-    console.log(e);
     clearTimeout(() => {
       console.log("clear");
     });
+  };
+
+  //click on a column
+  //loop over its cells
+  //find the cells where data-full is empty string
+  //choose the one with the highest number/cell
+  //change data-full of that cell to true
+  const clickColumn = (e) => {
+    const children = [...e.currentTarget.children];
+
+    children.map((child) => {
+      if (!child.dataset.full) {
+        empty.push(child);
+      }
+    });
+
+    const nextEmpty = empty.length && empty[empty.length - 1];
+    empty.length &&
+      setPiecePositions([...piecePositions, +nextEmpty.dataset.piece]);
+    empty.length && (empty[empty.length - 1].dataset.full = "full");
   };
 
   return (
@@ -40,8 +65,14 @@ function GameBoard({
         <div className="player1-score">
           <ScoreCard player="1" playerScore={playerOneScore} number="one" />
         </div>
+
         <Board
-          piece={piece}
+          piecePositions={piecePositions}
+          marker={marker}
+          columnToShow={columnToShow}
+          showColumnMarker={showColumnMarker}
+          // redPieces={redPieces}
+          // yellowPiece={yellowPiece}
           clickColumn={clickColumn}
           clickCell={clickCell}
           currentPlayer={currentPlayer}

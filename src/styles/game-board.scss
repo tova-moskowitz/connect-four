@@ -118,15 +118,54 @@
   z-index: 1;
   width: 26rem;
   height: 26rem;
-  row-gap: 8px;
+  column-gap: 2px;
+
+  .column {
+    position: relative;
+    width: 88px;
+    height: 125%;
+    border-radius: 32px;
+    cursor: pointer;
+    z-index: 999;
+  }
+
+  .marker {
+    position: relative;
+    top: -35px;
+    left: 7px;
+    width: 32px;
+    height: 26px;
+  }
 
   .piece {
-    color: white;
-    width: 83px;
-    height: 83px;
+    position: relative;
+    color: #fff;
+    width: 88px;
+    height: 82px;
     cursor: pointer;
     border-radius: 50px;
-    margin-left: 6px;
     margin-bottom: 8px;
+    z-index: -1;
+
+    // img {}
+  }
+
+  .red-counter {
+    // display: block;
+    position: absolute;
+    width: 83px;
+    margin-left: 8px;
+    margin-top: 2px;
+    margin-bottom: -10px;
+
+  }
+
+  .yellow-counter {
+    // display: block;
+    position: absolute;
+    width: 83px;
+    margin-left: 8px;
+    margin-top: 2px;
+    margin-bottom: -10px;
   }
 }

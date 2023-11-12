@@ -8,11 +8,18 @@ function App() {
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const [redMoves, setRedMoves] = useState([]);
   const [yellowMoves, setYellowMoves] = useState([]);
+  // const [redPiece, setRedPiece] = useState("");
+  // const [redPieces, setRedPieces] = useState([]);
+  // const [yellowPiece, setYellowPiece] = useState([]);
+  const [marker, setMarker] = useState("");
+
   // const [winner, setWinner] = useState("");
   const [playerOneScore, setPlayerOneScore] = useState(0);
   const [playerTwoScore, setPlayerTwoScore] = useState(0);
   const [countdown, setCountdown] = useState(30);
-  const [piece, setPiece] = useState([]);
+  const [pieces, setPieces] = useState([]);
+  const [columnToShow, setColumnToShow] = useState("");
+  // const columnRef = useRef(null);
 
   const clickRestart = () => {
     setWinner("");
@@ -31,40 +38,31 @@ function App() {
     }
   });
 
-  const clickColumn = (e) => {
-    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
-    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
-
-    const redPiece = (
+  const showColumnMarker = (e) => {
+    setColumnToShow(e.currentTarget.id);
+    setMarker(
       <img
-        src="/assets/images/counter-red-large.svg"
-        alt="red counter"
-        className="red-counter"
+        className="marker"
+        src={`/assets/images/marker-${currentTurnColor}.svg`}
+        alt=""
       />
     );
-    const yellowPiece = (
-      <img
-        src="/assets/images/counter-yellow-large.svg"
-        alt="yellow counter"
-        className="yellow-counter"
-      />
-    );
-
-    currentPlayer === 1
-      ? setPiece([...piece, redPiece])
-      : setPiece([...piece, yellowPiece]);
-
-    console.log(piece);
   };
 
-  const clickCell = (e) => {};
+  const clickCell = (e) => {
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
+  };
 
   return (
     <div className="main-wrapper">
       <MainMenu />
       <GameBoard
-        piece={piece}
-        clickColumn={clickColumn}
+        marker={marker}
+        columnToShow={columnToShow}
+        showColumnMarker={showColumnMarker}
+        // redPieces={redPieces}
+        // yellowPiece={yellowPiece}
         countdown={countdown}
         playerOneScore={playerOneScore}
         playerTwoScore={playerTwoScore}
