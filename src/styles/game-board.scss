@@ -122,11 +122,11 @@
 
   .column {
     position: relative;
-    width: 88px;
+    left: 9px;
+    width: 86px;
     height: 125%;
     border-radius: 32px;
     cursor: pointer;
-    z-index: 999;
   }
 
   .marker {
@@ -138,15 +138,14 @@
   }
 
   .piece {
-    position: relative;
     color: #fff;
     width: 88px;
     height: 82px;
     cursor: pointer;
     border-radius: 50px;
     margin-bottom: 8px;
-    z-index: -1;
-
+    position: relative;
+    top: 8px;
     // img {}
   }
 
