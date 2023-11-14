@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/main-menu.scss";
 
 function Board({
-  redPieces,
-  piece,
-
-  // yellowPiece,
   currentPlayer,
   currentTurnColor,
   clickCell,
@@ -28,14 +24,15 @@ function Board({
   ];
 
   const outputCounters = (cell) => {
-    return piecePositions.map((piecePosition) => {
-      if (+cell === +piecePosition && currentTurnColor === "red") {
-        return <img src="/assets/images/counter-red-large.svg" alt="" />;
+    for (let piecePosition in piecePositions) {
+      if (+cell === +piecePositions[piecePosition].cellNumber) {
+        if (piecePositions[piecePosition].color === "red") {
+          return <img src="/assets/images/counter-red-large.svg" alt="" />;
+        } else {
+          return <img src="/assets/images/counter-yellow-large.svg" alt="" />;
+        }
       }
-      if (+cell === +piecePosition && currentTurnColor === "yellow") {
-        return <img src="/assets/images/counter-yellow-large.svg" alt="" />;
-      }
-    });
+    }
   };
 
   return (
@@ -57,6 +54,7 @@ function Board({
                   className="piece"
                   data-piece={cell}
                   data-full=""
+                  data-color=""
                 >
                   {outputCounters(cell)}
                 </div>

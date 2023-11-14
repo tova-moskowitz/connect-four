@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/game-board.scss";
 import ScoreCard from "./ScoreCard.jsx";
 import CurrentTurn from "./CurrentTurn.jsx";
@@ -8,8 +8,6 @@ import Board from "./Board.jsx";
 function GameBoard({
   marker,
   showColumnMarker,
-  // redPieces,
-  // yellowPiece,
   currentTurnColor,
   currentPlayer,
   clickCell,
@@ -17,7 +15,6 @@ function GameBoard({
   playerOneScore,
   playerTwoScore,
   countdown,
-  pieces,
   columnToShow,
 }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -36,6 +33,7 @@ function GameBoard({
   //find the cells where data-full is empty string
   //choose the one with the highest number/cell
   //change data-full of that cell to true
+  //set data-color to whatever is currentTurnColor
   const clickColumn = (e) => {
     const children = [...e.currentTarget.children];
 
@@ -44,11 +42,23 @@ function GameBoard({
         empty.push(child);
       }
     });
-
     const nextEmpty = empty.length && empty[empty.length - 1];
+
+    const updatedValue = {
+      cellNumber: +nextEmpty.dataset.piece,
+      color: currentTurnColor,
+    };
+
     empty.length &&
-      setPiecePositions([...piecePositions, +nextEmpty.dataset.piece]);
+      setPiecePositions((piecePositions) => [
+        ...piecePositions,
+        { ...updatedValue },
+      ]);
     empty.length && (empty[empty.length - 1].dataset.full = "full");
+
+    empty.length && currentTurnColor === "red"
+      ? (empty[empty.length - 1].dataset.color = "red")
+      : (empty[empty.length - 1].dataset.color = "yellow");
   };
 
   return (

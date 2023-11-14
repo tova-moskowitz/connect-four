@@ -17,7 +17,6 @@ function App() {
   const [playerOneScore, setPlayerOneScore] = useState(0);
   const [playerTwoScore, setPlayerTwoScore] = useState(0);
   const [countdown, setCountdown] = useState(30);
-  const [pieces, setPieces] = useState([]);
   const [columnToShow, setColumnToShow] = useState("");
   // const columnRef = useRef(null);
 
@@ -39,14 +38,14 @@ function App() {
   });
 
   const showColumnMarker = (e) => {
-    setColumnToShow(e.currentTarget.id);
-    setMarker(
-      <img
-        className="marker"
-        src={`/assets/images/marker-${currentTurnColor}.svg`}
-        alt=""
-      />
-    );
+    // setColumnToShow(e.currentTarget.id);
+    // setMarker(
+    //   <img
+    //     className="marker"
+    //     src={`/assets/images/marker-${currentTurnColor}.svg`}
+    //     alt=""
+    //   />
+    // );
   };
 
   const clickCell = (e) => {
@@ -61,8 +60,6 @@ function App() {
         marker={marker}
         columnToShow={columnToShow}
         showColumnMarker={showColumnMarker}
-        // redPieces={redPieces}
-        // yellowPiece={yellowPiece}
         countdown={countdown}
         playerOneScore={playerOneScore}
         playerTwoScore={playerTwoScore}
