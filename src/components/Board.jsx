@@ -52,7 +52,7 @@ function Board({
                   onClick={clickCell}
                   key={cell}
                   className="piece"
-                  data-piece={cell}
+                  id={cell}
                   data-full=""
                   data-color=""
                 >
