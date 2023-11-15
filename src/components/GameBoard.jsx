@@ -8,8 +8,6 @@ import Board from "./Board.jsx";
 function GameBoard({
   marker,
   showColumnMarker,
-  currentTurnColor,
-  currentPlayer,
   clickCell,
   clickRestart,
   playerOneScore,
@@ -19,6 +17,9 @@ function GameBoard({
 }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [piecePositions, setPiecePositions] = useState([]);
+  const [currentTurnColor, setCurrentTurnColor] = useState("red");
+  const [currentPlayer, setCurrentPlayer] = useState(1);
+
   const empty = [];
 
   const openMenuModal = (e) => {
@@ -27,7 +28,22 @@ function GameBoard({
       console.log("clear");
     });
   };
-
+  const gamePieceDropAnimation = (gamePiece, pieceDropHeight) => {
+    // sets the game piece drop animation
+    gamePiece.animate(
+      [
+        { transform: `translateY(${pieceDropHeight}px)` },
+        { transform: `translateY(0px)` },
+        { transform: `translateY(${pieceDropHeight / 30}px)` },
+        { transform: `translateY(0px)` },
+      ],
+      {
+        duration: 500,
+        easing: "linear",
+        iterations: 1,
+      }
+    );
+  };
   //click on a column
   //loop over its cells
   //find the cells where data-full is empty string
@@ -35,6 +51,9 @@ function GameBoard({
   //change data-full of that cell to true
   //set data-color to whatever is currentTurnColor
   const clickColumn = (e) => {
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
+
     const children = [...e.currentTarget.children];
 
     children.map((child) => {
@@ -45,7 +64,7 @@ function GameBoard({
     const nextEmpty = empty.length && empty[empty.length - 1];
 
     const updatedValue = {
-      cellNumber: +nextEmpty.dataset.piece,
+      cellNumber: +nextEmpty.id,
       color: currentTurnColor,
     };
 
@@ -59,6 +78,17 @@ function GameBoard({
     empty.length && currentTurnColor === "red"
       ? (empty[empty.length - 1].dataset.color = "red")
       : (empty[empty.length - 1].dataset.color = "yellow");
+
+    children.map((child) => {
+      if (+nextEmpty.id === +child.id) {
+        const cellPosition = child.getBoundingClientRect();
+        const boardPosition = e.currentTarget.parentElement.getBoundingClientRect();
+        const x = cellPosition.bottom - boardPosition.bottom;
+        const y = cellPosition.top - boardPosition.top;
+
+        gamePieceDropAnimation(child, x - y);
+      }
+    });
   };
 
   return (
