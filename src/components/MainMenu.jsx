@@ -8,11 +8,11 @@ function MainMenu() {
   return (
     <>
       <div className="main-menu-wrapper">
-        <img src="/assets/images/logo.svg" alt="logo" className="logo" />
+        <img src="/src/assets/images/logo.svg" alt="logo" className="logo" />
         <button className="player-vp-layer-btn">
           PLAYER VS PLAYER
           <img
-            src="/assets/images/player-vs-player.svg"
+            src="/src/assets/images/player-vs-player.svg"
             alt="playervplayer"
             className="player-v-player"
           />

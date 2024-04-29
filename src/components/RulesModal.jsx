@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/main-menu.scss";
-import iconCheck from "../../public/assets/images/icon-check.svg";
-import iconCheckHover from "../../public/assets/images/icon-check-hover.svg";
+import iconCheck from "/src/assets/images/icon-check.svg";
+import iconCheckHover from "/src/assets/images/icon-check-hover.svg";
 
 function RulesModal({ setModalOpen }) {
   const [checkIcon, setCheckIcon] = useState(iconCheck);

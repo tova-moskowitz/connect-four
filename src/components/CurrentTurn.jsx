@@ -6,12 +6,12 @@ function CurrentTurn({ currentTurnColor, currentPlayer, countdown }) {
     <>
       <img
         className="current-turn-background"
-        src={`/assets/images/turn-background-${currentTurnColor}.svg`}
+        src={`/src/assets/images/turn-background-${currentTurnColor}.svg`}
         alt=""
       />
       <div className={`current-turn-countdown ${currentTurnColor}`}>
-        Player {currentPlayer}'S Turn
-        <p>{countdown}s</p>
+        <span className="current-turn">PLAYER {currentPlayer}'S TURN</span>
+        <p className="countdown">{countdown}s</p>
       </div>
     </>
   );

@@ -19,8 +19,8 @@ function GameBoard({
   const [piecePositions, setPiecePositions] = useState([]);
   const [currentTurnColor, setCurrentTurnColor] = useState("red");
   const [currentPlayer, setCurrentPlayer] = useState(1);
-
-  const empty = [];
+  const [redMoves, setRedMoves] = useState([6, 30, 5, 22, 4, 9, 3]);
+  const [yellowMoves, setYellowMoves] = useState([]);
 
   const openMenuModal = (e) => {
     setModalOpen(true);
@@ -51,8 +51,7 @@ function GameBoard({
   //change data-full of that cell to true
   //set data-color to whatever is currentTurnColor
   const clickColumn = (e) => {
-    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
-    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
+    const empty = [];
 
     const children = [...e.currentTarget.children];
 
@@ -61,6 +60,11 @@ function GameBoard({
         empty.push(child);
       }
     });
+
+    if (empty.length === 0) {
+      return;
+    }
+
     const nextEmpty = empty.length && empty[empty.length - 1];
 
     const updatedValue = {
@@ -68,16 +72,37 @@ function GameBoard({
       color: currentTurnColor,
     };
 
-    empty.length &&
-      setPiecePositions((piecePositions) => [
-        ...piecePositions,
-        { ...updatedValue },
-      ]);
-    empty.length && (empty[empty.length - 1].dataset.full = "full");
+    const isWinningMove = () => {
+      //vertical win
+      // redMoves.sort();
+      redMoves.sort((a, b) => a - b);
+      return false;
+    };
 
-    empty.length && currentTurnColor === "red"
+    setPiecePositions((piecePositions) => [
+      ...piecePositions,
+      { ...updatedValue },
+    ]);
+
+    empty[empty.length - 1].dataset.full = "full";
+
+    currentTurnColor === "red"
       ? (empty[empty.length - 1].dataset.color = "red")
       : (empty[empty.length - 1].dataset.color = "yellow");
+    animatePiece(children, empty, e);
+
+    const winningMove = isWinningMove();
+    if (winningMove) {
+      console.log("WON");
+    } else {
+      changePlayer();
+    }
+    //add cell number to array holding turns
+    // []
+  };
+
+  const animatePiece = (children, empty, e) => {
+    const nextEmpty = empty.length && empty[empty.length - 1];
 
     children.map((child) => {
       if (+nextEmpty.id === +child.id) {
@@ -85,16 +110,20 @@ function GameBoard({
         const boardPosition = e.currentTarget.parentElement.getBoundingClientRect();
         const x = cellPosition.bottom - boardPosition.bottom;
         const y = cellPosition.top - boardPosition.top;
-
         gamePieceDropAnimation(child, x - y);
       }
     });
   };
 
+  const changePlayer = () => {
+    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
+  };
+
   return (
     <div className="gameboard-wrapper">
       {modalOpen && <MenuModal setModalOpen={setModalOpen} />}
-      <img className="logo" src="assets/images/logo.svg" alt="logo" />
+      <img className="logo" src="/src/assets/images/logo.svg" alt="logo" />
       <button onClick={openMenuModal} className="menu-btn">
         MENU
       </button>
@@ -111,8 +140,6 @@ function GameBoard({
           marker={marker}
           columnToShow={columnToShow}
           showColumnMarker={showColumnMarker}
-          // redPieces={redPieces}
-          // yellowPiece={yellowPiece}
           clickColumn={clickColumn}
           clickCell={clickCell}
           currentPlayer={currentPlayer}

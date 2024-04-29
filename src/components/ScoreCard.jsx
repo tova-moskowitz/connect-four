@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/main-menu.scss";
 
 function ScoreCard({ player, playerScore, number }) {
   return (
     <>
-      <div className={`player${player}-score`}>
-        <img src={`/assets/images/player-${number}.svg`} alt="" />
-        Player {player} <p>{playerScore}</p>
+      <div>
+        <img src={`/src/assets/images/player-${number}.svg`} alt="" />
+        <span className="player-score">
+          PLAYER {player} <p className="score">{playerScore}</p>
+        </span>
       </div>
     </>
   );

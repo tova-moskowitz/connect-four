@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.scss";
 import MainMenu from "./components/MainMenu.jsx";
 import GameBoard from "./components/GameBoard.jsx";
+import QuestionList from "./components/QuestionList.jsx";
 
 function App() {
   const [currentTurnColor, setCurrentTurnColor] = useState("red");
@@ -36,7 +37,22 @@ function App() {
       // setCountdown(`Player ${winner} WINS!`);
     }
   });
-
+  const gamePieceDropAnimation = (gamePiece, pieceDropHeight) => {
+    // sets the game piece drop animation
+    gamePiece.animate(
+      [
+        { transform: `translateY(${pieceDropHeight}px)` },
+        { transform: `translateY(0px)` },
+        { transform: `translateY(${pieceDropHeight / 30}px)` },
+        { transform: `translateY(0px)` },
+      ],
+      {
+        duration: 500,
+        easing: "linear",
+        iterations: 1,
+      }
+    );
+  };
   const showColumnMarker = (e) => {
     // setColumnToShow(e.currentTarget.id);
     // setMarker(
@@ -49,13 +65,14 @@ function App() {
   };
 
   const clickCell = (e) => {
-    setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
-    setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
+    // setCurrentPlayer(currentPlayer === 1 ? 2 : 1);
+    // setCurrentTurnColor(currentTurnColor === "red" ? "yellow" : "red");
   };
 
   return (
+    // <QuestionList />
     <div className="main-wrapper">
-      <MainMenu />
+      {/* <MainMenu / > */}
       <GameBoard
         marker={marker}
         columnToShow={columnToShow}

@@ -1,8 +1,30 @@
 @import "../styles/_variables.scss";
 
+.main-wrapper {
+  top: 0;
+  position: absolute;
+  left: 13vw;
+}
+
+
 .gameboard-wrapper {
-  width: 100%;
+  width: 75vw;
   margin: auto;
+  position: relative;
+  display: flex;
+
+  .menu-btn {
+    position: absolute;
+    left: 19%;
+    top: 10%;
+  }
+
+  .restart-btn {
+    position: absolute;
+    right: 23%;
+    top: 10%;
+  }
+
 
   button {
     border-radius: 20px;
@@ -12,30 +34,56 @@
 
   .logo {
     position: absolute;
-    top: 5%;
-    left: 48%;
+    top: 10%;
+    left: 45%;
   }
 
   .gameboard {
 
+    img {
+      position: absolute;
+      top: -30px;
+      left: 44px;
+    }
+
+    .player-score {
+      font-weight: bold;
+    }
+
     .player1-score,
     .player2-score {
+      position: absolute;
+      top: 350px;
       width: 141px;
-      height: 160px;
+      height: 50px;
       flex-shrink: 0;
       border-radius: 20px;
       border: 3px solid $black;
       background: $white;
+      padding: 45px 0 60px 0;
       box-shadow: 0px 10px 0px 0px $black;
+
+      .score {
+        font-weight: bold;
+        font-size: 50px;
+        margin: 0;
+      }
+    }
+
+    .player2-score {
+      right: 45px;
     }
 
     .current-turn-section-wrapper {
       position: absolute;
+      z-index: 99;
+      left: 32%;
+      top: 175%;
 
       .current-turn-background {
         position: relative;
-        width: 191px;
-        height: 150px;
+        width: 250px;
+        height: 185px;
         flex-shrink: 0;
         fill: var(--Red, #fd6687);
         stroke-width: 3px;
@@ -44,10 +92,21 @@
       }
 
       .current-turn-countdown {
-        top: 3em;
+        top: 1em;
         position: absolute;
-        left: 20%;
+        left: 43%;
+
+        .current-turn {
+          font-weight: bold;
+        }
+
+        .countdown {
+          font-weight: bold;
+          font-size: 50px;
+          margin: 0;
+        }
       }
+
 
       .red {
         color: $white;
@@ -64,19 +123,22 @@
 
 // menu modal
 .menu-modal {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   z-index: 99;
-  top: 55%;
-  left: 50%;
+  top: 110%;
+  left: 53%;
   width: 480px;
   height: 491px;
-  flex-shrink: 0;
   margin-top: -300px;
   margin-left: -300px;
   border-radius: 40px;
   border: 3px solid $black;
   background: $purple;
   box-shadow: 0px 10px 0px 0px $black;
+  color: #ffff;
+
 
   button {
     border-radius: 20px;
@@ -84,6 +146,17 @@
     background: var(--White, #fff);
     box-shadow: 0px 10px 0px 0px #000;
     color: $black;
+    padding: 0 50px;
+    margin: 0 40px 25px 40px;
+    height: 80px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .quit-btn {
+    background: $pink;
+    color: $white;
+    font-weight: bold;
   }
 }
 
@@ -91,7 +164,7 @@
 .board::before {
   top: -5px;
   content: "";
-  background: url("/assets/images/board-layer-black-large.svg") no-repeat;
+  background: url("/src/assets/images/board-layer-black-large.svg") no-repeat;
   position: absolute;
   width: 200%;
   height: 150%;
@@ -102,7 +175,7 @@
 .board::after {
   top: -5px;
   content: "";
-  background: url("/assets/images/board-layer-white-large.svg") no-repeat;
+  background: url("/src/assets/images/board-layer-white-large.svg") no-repeat;
   position: absolute;
   width: 200%;
   height: 150%;
@@ -114,7 +187,7 @@
   grid-template-columns: repeat(7, 1fr);
   position: relative;
   left: 200px;
-  top: 0px;
+  top: 150px;
   z-index: 1;
   width: 26rem;
   height: 26rem;
@@ -122,7 +195,7 @@
 
   .column {
     position: relative;
-    left: 9px;
+    left: -26px;
     width: 86px;
     height: 125%;
     border-radius: 32px;
@@ -139,14 +212,15 @@
 
   .piece {
     color: #fff;
-    width: 88px;
     height: 82px;
     cursor: pointer;
-    border-radius: 50px;
     margin-bottom: 8px;
     position: relative;
     top: 8px;
-    // img {}
+
+    img {
+      top: -2px;
+    }
   }
 
   .red-counter {

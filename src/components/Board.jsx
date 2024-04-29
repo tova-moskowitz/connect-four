@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "../styles/main-menu.scss";
 
 function Board({
-  currentPlayer,
-  currentTurnColor,
   clickCell,
   columnToShow,
   showColumnMarker,
@@ -27,9 +25,11 @@ function Board({
     for (let piecePosition in piecePositions) {
       if (+cell === +piecePositions[piecePosition].cellNumber) {
         if (piecePositions[piecePosition].color === "red") {
-          return <img src="/assets/images/counter-red-large.svg" alt="" />;
+          return <img src="/src/assets/images/counter-red-large.svg" alt="" />;
         } else {
-          return <img src="/assets/images/counter-yellow-large.svg" alt="" />;
+          return (
+            <img src="/src/assets/images/counter-yellow-large.svg" alt="" />
+          );
         }
       }
     }
@@ -56,6 +56,7 @@ function Board({
                   data-full=""
                   data-color=""
                 >
+                  {/* {cell} */}
                   {outputCounters(cell)}
                 </div>
               );
